@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HDFC Capital Location Intelligence</title>
+<meta name="description" content="Real estate data intelligence: parcel-level ownership, zoning, infrastructure and market reports.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ===================================================== NAV -->
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a class="brand" href="#home" data-go="home" aria-label="HDFC Capital Location Intelligence home">
+      <img class="brand-logo" src="assets/brand/hdfc-capital-logo.png" alt="HDFC Capital" onerror="this.hidden=true;this.nextElementSibling.hidden=false">
+      <span class="brand-word" hidden><b>HDFC <i>Capital</i></b></span>
+      <span class="brand-div" aria-hidden="true"></span>
+      <span class="brand-prod">Location Intelligence</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <button data-scroll="capabilities">Platform</button>
+      <button data-go="explore">Explore map</button>
+      <button data-scroll="how">How it works</button>
+    </nav>
+    <div class="nav-cta">
+      <span class="nav-city">Private client</span>
+      <button class="btn btn-primary" data-go="build" id="navCta"><span class="btn-shine"></span>Generate report <span class="btn-arrow"></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="app">
+
+<!-- ===================================================== VIEW: HOME -->
+<section class="view is-active" data-view="home" id="view-home">
+
+  <!-- HERO: live 3D city -->
+  <div class="hero" id="hero">
+    <canvas class="city" id="cityCanvas" aria-hidden="true"></canvas>
+    <div class="hero-veil" aria-hidden="true"></div>
+
+    <div class="callouts" id="callouts" aria-hidden="true">
+      <div class="callout co-parcel" data-anchor="parcel">
+        <span class="co-dot"></span>
+        <div class="co-card">
+          <span class="co-k"><i style="--c:var(--cyan)"></i>Subject site &middot; Sy. No. 112/3A</span>
+          <b>4.2 ac &middot; Residential zone</b>
+          <small>Title chain: 5 transfers since 1996</small>
+        </div>
+      </div>
+      <div class="callout co-left" data-anchor="tower">
+        <span class="co-dot"></span>
+        <div class="co-card">
+          <span class="co-k"><i style="--c:var(--violet)"></i>Master plan</span>
+          <b>Permissible FAR 2.5</b>
+          <small>Development plan 2031</small>
+        </div>
+      </div>
+      <div class="callout co-down" data-anchor="upcoming">
+        <span class="co-dot" style="--c:var(--amber)"></span>
+        <div class="co-card">
+          <span class="co-k"><i style="--c:var(--amber)"></i>Upcoming &middot; 2027</span>
+          <b>Expressway interchange</b>
+          <small>1.8 km from site</small>
+        </div>
+      </div>
+      <div class="callout co-down" data-anchor="metro">
+        <span class="co-dot" style="--c:var(--cyan)"></span>
+        <div class="co-card">
+          <span class="co-k"><i style="--c:var(--cyan)"></i>Metro &middot; under construction</span>
+          <b>New station</b>
+          <small>2.4 km &middot; opens 2027</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap hero-in">
+      <div class="hero-copy">
+        <p class="pill-eyebrow"><span class="dot-live"></span>Property &amp; location data &middot; PAN India</p>
+        <h1 class="display"><span>Know the property</span> <span class="grad">before you invest in&nbsp;it.</span></h1>
+        <p class="lede">One place for the facts on any property in India: ownership records, approvals, infrastructure and market data.</p>
+
+        <div class="hero-actions">
+          <button class="btn btn-primary btn-xl" data-go="build"><span class="btn-shine"></span>Generate report <span class="btn-arrow"></span></button>
+          <button class="btn btn-glass btn-xl" data-go="explore"><span data-icon="layers"></span>Explore map</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CAPABILITIES: bento -->
+  <section class="section wrap" id="capabilities">
+    <div class="sec-head">
+      <p class="eyebrow">The platform</p>
+      <h2 class="h2">Every fact on a property, in one place.</h2>
+    </div>
+    <div class="bento">
+      <article class="tile t-own">
+        <div class="tile-top"><span class="tile-ic" data-icon="doc"></span></div>
+        <h3>Ownership &amp; title</h3>
+        <p>Title chain, mutations, encumbrances and court records.</p>
+        <div class="viz viz-chain">
+          <span style="--x:4%"><i></i><b>1996</b><small>Partition</small></span>
+          <span style="--x:28%"><i></i><b>2005</b><small>Sale</small></span>
+          <span style="--x:52%"><i></i><b>2013</b><small>Sale</small></span>
+          <span style="--x:75%"><i></i><b>2019</b><small>Converted</small></span>
+          <span style="--x:96%" class="now"><i></i><b>2026</b><small>Current</small></span>
+        </div>
+      </article>
+      <article class="tile t-zone">
+        <div class="tile-top"><span class="tile-ic" data-icon="shield"></span></div>
+        <h3>Zoning &amp; approvals</h3>
+        <p>Land use, FAR and approvals on the exact parcel.</p>
+        <div class="viz viz-zone">
+          <div class="zbar"><span style="--w:46%;--c:var(--blue)"></span><span style="--w:24%;--c:var(--violet)"></span><span style="--w:18%;--c:var(--cyan)"></span><span style="--w:12%;--c:var(--amber)"></span></div>
+          <div class="zleg mono"><span><i style="--c:var(--blue)"></i>Residential</span><span><i style="--c:var(--violet)"></i>Commercial</span><span><i style="--c:var(--cyan)"></i>Public</span><span><i style="--c:var(--amber)"></i>Buffer</span></div>
+        </div>
+      </article>
+      <article class="tile t-infra">
+        <div class="tile-top"><span class="tile-ic" data-icon="route"></span></div>
+        <h3>Infrastructure</h3>
+        <p>Metro, rail, expressways and airports, with dates.</p>
+        <div class="viz viz-gantt mono">
+          <div><span>Metro lines</span><i style="--s:0%;--e:40%"></i><em>2027</em></div>
+          <div><span>Expressways</span><i style="--s:8%;--e:48%"></i><em>2027</em></div>
+          <div><span>High-speed rail</span><i style="--s:14%;--e:66%"></i><em>2028</em></div>
+          <div><span>Airports</span><i style="--s:22%;--e:92%"></i><em>2029</em></div>
+        </div>
+      </article>
+      <article class="tile t-market">
+        <div class="tile-top"><span class="tile-ic" data-icon="chart"></span></div>
+        <h3>Market &amp; catchment</h3>
+        <p>Launches, absorption, transactions and demographics.</p>
+        <div class="viz viz-bars mono">
+          <div><span>2022</span><i style="--h:42%"></i></div><div><span>2023</span><i style="--h:58%"></i></div><div><span>2024</span><i style="--h:66%"></i></div><div><span>2025</span><i style="--h:80%"></i></div><div class="now"><span>2026</span><i style="--h:92%"></i></div>
+        </div>
+      </article>
+      <article class="tile t-site">
+        <div class="tile-top"><span class="tile-ic" data-icon="mountain"></span></div>
+        <h3>Physical site</h3>
+        <p>Elevation, slope, soil, flood and seismic zone.</p>
+        <div class="viz viz-topo">
+          <svg viewBox="0 0 200 70" aria-hidden="true">
+            <g fill="none" stroke="#0E2A55" stroke-opacity=".35">
+              <ellipse cx="120" cy="36" rx="70" ry="30"/><ellipse cx="124" cy="36" rx="52" ry="22"/><ellipse cx="128" cy="35" rx="35" ry="15"/><ellipse cx="131" cy="34" rx="18" ry="8" stroke="#A1232B" stroke-opacity="1"/>
+            </g>
+            <text x="6" y="18" fill="#5B6676" font-size="10" font-family="JetBrains Mono, monospace">212 m</text>
+            <text x="6" y="34" fill="#18794E" font-size="10" font-family="JetBrains Mono, monospace">flood: low</text>
+          </svg>
+        </div>
+      </article>
+      <article class="tile t-copilot">
+        <div class="tile-top"><span class="tile-ic" data-icon="spark"></span></div>
+        <h3>Atlas</h3>
+        <p>Ask the map in plain language, anywhere in India.</p>
+        <div class="viz viz-chat">
+          <span class="q">What&rsquo;s coming up within 5 km?</span>
+          <span class="a"><i style="--c:var(--cyan)"></i>Metro station <em class="mono">2027 &middot; 2.4 km</em></span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section wrap" id="how">
+    <div class="sec-head">
+      <p class="eyebrow">How it works</p>
+      <h2 class="h2">From pin to PDF in four steps.</h2>
+    </div>
+    <ol class="steps">
+      <li><span class="step-n mono">01</span><h3>Choose the asset type</h3><p>Over 30 property types across land, residential, commercial and more.</p></li>
+      <li><span class="step-n mono">02</span><h3>Locate the site</h3><p>Pin it on the map, paste a Google Maps link or enter coordinates.</p></li>
+      <li><span class="step-n mono">03</span><h3>Select report sections</h3><p>Ownership, infrastructure, regulation, records, market and the physical site.</p></li>
+      <li><span class="step-n mono">04</span><h3>Generate PDF</h3><p>View it in the browser or download a copy.</p></li>
+    </ol>
+  </section>
+
+  <footer class="foot-band">
+    <div class="foot wrap">
+      <span class="brand brand-sm"><img class="brand-logo" src="assets/brand/hdfc-capital-logo.png" alt="HDFC Capital" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="brand-word" hidden><b>HDFC <i>Capital</i></b></span><span class="brand-div" aria-hidden="true"></span><span class="brand-prod">Location Intelligence</span></span>
+      <span class="muted">Concept prototype prepared for HDFC Capital. All figures shown are dummy data.</span>
+      </div>
+  </footer>
+</section>
+
+<!-- ===================================================== VIEW: MAP EXPLORER -->
+<section class="view" data-view="explore" id="view-explore">
+  <div class="xp">
+    <div class="map-shell xp-map">
+      <div id="map" class="map" role="application" aria-label="Interactive map of India"></div>
+
+      <div class="map-top">
+        <form class="map-search" id="mapSearch" autocomplete="off" role="search">
+          <span data-icon="search"></span>
+          <input id="mapSearchInput" type="text" placeholder="Search any location in India" aria-label="Search the map">
+          <ul class="suggest" id="mapSuggest" role="listbox" hidden></ul>
+        </form>
+        <div class="layer-pills" id="layerPills" role="group" aria-label="Map layers">
+          <button class="pill is-on" data-layer="metro"><i style="--c:#6D3FD0"></i>Metro</button>
+          <button class="pill is-on" data-layer="upcoming"><i style="--c:var(--amber)"></i>Upcoming infra</button>
+          <button class="pill is-on" data-layer="pois"><i style="--c:var(--pink)"></i>Amenities</button>
+          <button class="pill" data-layer="sat"><i style="--c:var(--blue)"></i>Satellite</button>
+        </div>
+      </div>
+
+      <div class="map-tools">
+        <button class="tool" id="zoomIn" aria-label="Zoom in" data-icon="plus"></button>
+        <button class="tool" id="zoomOut" aria-label="Zoom out" data-icon="minus"></button>
+        <button class="tool" id="recenter" aria-label="Reset view" data-icon="locate"></button>
+      </div>
+
+      <div class="map-legend" id="mapLegend">
+        <span><i class="lg-line" style="--c:#6D3FD0"></i>Operational metro</span>
+        <span><i class="lg-line lg-dash" style="--c:#1F6FB2"></i>Upcoming metro</span>
+        <span><i class="lg-line lg-dash" style="--c:var(--amber)"></i>Upcoming roads &amp; rail</span>
+      </div>
+
+      <div class="xp-cities" id="xpCities" role="group" aria-label="Jump to a city"></div>
+
+      <aside class="site-card" id="siteCard" hidden aria-live="polite"></aside>
+
+      <p class="map-hint" id="mapHint"><span data-icon="pin"></span>Click anywhere to see the data for a site</p>
+      <div class="map-fallback" id="mapFallback" hidden>
+        <p>The map library didn&rsquo;t load. Check your connection, or open this page from a local server.</p>
+      </div>
+    </div>
+    <div class="chat" id="chat">
+      <div class="chat-head">
+        <div class="chat-id">
+          <span class="chat-avatar" data-icon="spark"></span>
+          <div><b>Atlas</b><small><span class="dot-live"></span>Focused on <span id="chatFocus">all of India</span></small></div>
+        </div>
+        <button class="btn btn-glass btn-sm" id="chatReset">Clear</button>
+      </div>
+      <div class="chat-log" id="chatLog" aria-live="polite"></div>
+      <div class="chat-suggest" id="chatSuggest"></div>
+      <form class="chat-input" id="chatForm" autocomplete="off">
+        <input id="chatInput" type="text" placeholder="Ask about infrastructure, amenities, zoning&hellip;" aria-label="Message Atlas">
+        <button type="submit" class="send" aria-label="Send" data-icon="send"></button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================== VIEW: REPORT BUILDER -->
+<section class="view" data-view="build" id="view-build">
+  <div class="builder wrap">
+    <div class="b-top">
+      <button class="btn btn-quiet btn-sm" data-go="home"><span data-icon="back"></span>Back</button>
+      <ol class="stepper" id="stepper" aria-label="Progress">
+        <li data-step="1"><span class="st-n">1</span><span class="st-l">Property type</span></li>
+        <li data-step="2"><span class="st-n">2</span><span class="st-l">Location</span></li>
+        <li data-step="3"><span class="st-n">3</span><span class="st-l">Site boundary</span></li>
+        <li data-step="4"><span class="st-n">4</span><span class="st-l">Report sections</span></li>
+        <li data-step="5"><span class="st-n">5</span><span class="st-l">Confirm</span></li>
+      </ol>
+    </div>
+
+    <div class="b-grid">
+      <div class="b-main">
+        <!-- STEP 1 -->
+        <div class="b-step" data-bstep="1">
+          <header class="b-head">
+            <p class="eyebrow">Step 1 of 5 &middot; Property type</p>
+            <h1 class="h2">What kind of property is this?</h1>
+            <p class="sec-sub">Pick a category, then the specific asset type. We tune data depth to match it.</p>
+          </header>
+          <div class="cat-grid" id="catGrid" role="radiogroup" aria-label="Property category"></div>
+          <div class="sub-panel" id="subPanel" aria-live="polite"></div>
+        </div>
+
+        <!-- STEP 2: PROPERTY LOCATION -->
+        <div class="b-step" data-bstep="2" hidden>
+          <header class="b-head">
+            <p class="eyebrow">Step 2 of 5 &middot; Property location</p>
+            <h1 class="h2">Where is the property?</h1>
+            <p class="sec-sub">Search or click the map, paste a Google Maps link, or enter coordinates.</p>
+          </header>
+
+          <div class="loc-bar">
+            <div class="loc-tabs" id="locMethods" role="radiogroup" aria-label="How to locate the property">
+              <button type="button" class="lm" data-method="map" role="radio" aria-checked="false"><span class="lm-ic" data-icon="pin"></span>Select on map</button>
+              <button type="button" class="lm" data-method="link" role="radio" aria-checked="false"><span class="lm-ic" data-icon="link"></span>Google Maps link</button>
+              <button type="button" class="lm" data-method="coordinates" role="radio" aria-checked="false"><span class="lm-ic" data-icon="locate"></span>Coordinates</button>
+            </div>
+            <div class="loc-panel" data-panel="map">
+              <div class="loc-search" id="locSearchWrap">
+                <span data-icon="search"></span>
+                <input id="locSearch" type="text" placeholder="Search a location, address, locality or landmark" autocomplete="off" aria-label="Search location">
+                <ul class="suggest" id="locSuggest" hidden></ul>
+              </div>
+            </div>
+            <div class="loc-panel" data-panel="link" hidden>
+              <label class="field"><span class="sr">Google Maps link</span><input id="gmLink" type="url" inputmode="url" placeholder="Paste a Google Maps link, e.g. https://maps.google.com/..." autocomplete="off"></label>
+              <button type="button" class="btn btn-glass" data-act="locate-link">Locate</button>
+            </div>
+            <div class="loc-panel" data-panel="coordinates" hidden>
+              <label class="field"><span class="sr">Latitude</span><input id="latIn" type="text" inputmode="decimal" placeholder="Latitude, e.g. 28.459500" autocomplete="off"></label>
+              <label class="field"><span class="sr">Longitude</span><input id="lngIn" type="text" inputmode="decimal" placeholder="Longitude, e.g. 77.026600" autocomplete="off"></label>
+              <button type="button" class="btn btn-glass" data-act="locate-coords">Locate</button>
+            </div>
+          </div>
+          <p class="lm-err" id="gmErr" role="alert" hidden></p>
+          <p class="lm-err" id="coErr" role="alert" hidden></p>
+
+          <div class="loc-stage" id="locStage">
+            <div class="loc-mapwrap">
+              <div class="loc-map" id="locMap"></div>
+              <p class="loc-hint" id="locHint"><span data-icon="pin"></span>Click the exact spot of the property</p>
+            </div>
+            <aside class="loc-result" id="locResult" aria-live="polite"></aside>
+          </div>
+        </div>
+
+        <!-- STEP 3: PROPERTY / LAND BOUNDARY -->
+        <div class="b-step" data-bstep="3" hidden>
+          <header class="b-head">
+            <p class="eyebrow">Step 3 of 5 &middot; Site boundary</p>
+            <h1 class="h2" id="bdTitle">Define the land parcel</h1>
+            <p class="sec-sub" id="bdSub">Draw the boundary of the property on the map.</p>
+          </header>
+
+          <div class="bd-ask" id="bdAsk">
+            <span class="bd-ask-ic" data-icon="land"></span>
+            <div>
+              <h3>Does this property occupy a defined land parcel?</h3>
+              <p>If it sits on its own site, outline it so the report can cover the whole parcel: area, boundary checks and encroachments. You can skip this for now.</p>
+            </div>
+            <div class="bd-ask-actions">
+              <button type="button" class="btn btn-primary" id="bdYes">Yes, define boundary</button>
+              <button type="button" class="btn btn-glass" id="bdSkip">No / Skip</button>
+            </div>
+          </div>
+
+          <div class="bd-stage" id="bdStage" hidden>
+            <div class="bd-toolbar" role="toolbar" aria-label="Boundary tools">
+              <button type="button" class="tb" id="bdDraw"><span data-icon="pin"></span>Draw Boundary</button>
+              <button type="button" class="tb" id="bdEdit"><span data-icon="route"></span>Edit Boundary</button>
+              <button type="button" class="tb" id="bdClear"><span data-icon="close"></span>Clear Boundary</button>
+              <span class="tb-sep"></span>
+              <button type="button" class="tb" id="bdUndo" hidden>Undo point</button>
+              <button type="button" class="tb" id="bdFinish" hidden>Close shape</button>
+            </div>
+            <div class="bd-grid">
+              <div class="loc-map bd-map" id="bdMap"></div>
+              <div class="bd-side">
+                <div id="bdInfo" class="bd-info-live" aria-live="polite"></div>
+                <div class="bd-cta"><button type="button" class="btn btn-primary btn-block" id="bdConfirm" disabled><span data-icon="check"></span>Confirm boundary</button><button type="button" class="btn btn-quiet btn-sm bd-skiplater" id="bdSkipLater">Skip boundary for this property</button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 4: REPORT SECTIONS -->
+        <div class="b-step" data-bstep="4" hidden>
+          <header class="b-head">
+            <p class="eyebrow">Step 4 of 5 &middot; Report sections</p>
+            <h1 class="h2">What should the report cover?</h1>
+            <p class="sec-sub">Choose one or more sections. Every report also includes the cover, contents, an executive summary and the methodology.</p>
+          </header>
+          <div class="sec-tools">
+            <button class="btn btn-glass btn-sm" id="selAll">Select all</button>
+            <span class="muted mono" id="secCount">0 of 6 selected</span>
+          </div>
+          <div class="sec-list" id="secList" role="group" aria-label="Report sections"></div>
+        </div>
+
+        <!-- STEP 5: CONFIRM -->
+        <div class="b-step" data-bstep="5" hidden>
+          <header class="b-head">
+            <p class="eyebrow">Step 5 of 5 &middot; Confirm</p>
+            <h1 class="h2">Confirm the property</h1>
+            <p class="sec-sub">Check the property, site and report sections before we generate your report.</p>
+          </header>
+          <div class="cf-card">
+            <div class="cf-map-wrap"><p class="cf-k mono">Property location</p><div class="loc-map cf-map" id="cfMap"></div></div>
+            <div class="cf-body">
+              <dl class="cf-dl" id="cfDl"></dl>
+              <div class="cf-actions">
+                <button type="button" class="btn btn-glass btn-sm" id="cfEditLocation">Edit location</button>
+                <button type="button" class="btn btn-glass btn-sm" id="cfEditBoundary">Edit boundary</button>
+                <button type="button" class="btn btn-glass btn-sm" id="cfEditSections">Edit sections</button>
+                <button type="button" class="btn btn-primary btn-lg" id="cfContinue"><span class="btn-shine"></span>Generate report <span class="btn-arrow"></span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Summary rail -->
+      <aside class="b-rail" id="rail">
+        <div class="rail-card">
+          <p class="rail-k">Report brief</p>
+          <div class="rail-site" id="railSite"></div>
+          <dl class="rail-dl">
+            <div><dt>Property type</dt><dd id="railType"><span class="muted">Not selected</span></dd></div>
+            <div><dt>Location</dt><dd id="railLoc"><span class="muted">Not set yet</span></dd></div>
+            <div><dt>Land boundary</dt><dd id="railBd"><span class="muted">&ndash;</span></dd></div>
+            <div><dt>Sections</dt><dd id="railSecs"><span class="muted">Choose in step 4</span></dd></div>
+          </dl>
+          <button class="btn btn-primary btn-block" id="bNext" disabled>Continue <span class="btn-arrow"></span></button>
+          <button class="btn btn-quiet btn-block btn-sm" id="bPrev" hidden>Back</button>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================== VIEW: GENERATING -->
+<section class="view" data-view="generating" id="view-generating">
+  <div class="gen wrap">
+    <div class="gen-stage" aria-hidden="true"><canvas id="genCity" class="gen-city"></canvas><div class="gen-hud mono"><span>SCANNING</span><span id="genCoord">13.2437 N &middot; 77.7120 E</span></div></div>
+    <div class="gen-copy">
+      <p class="eyebrow">Generating your report</p>
+      <h1 class="h2" id="genTitle">Reading the ground&hellip;</h1>
+      <div class="gen-bar"><span id="genBar"></span></div>
+      <p class="mono gen-pct" id="genPct">0%</p>
+      <ul class="gen-log mono" id="genLog"></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================== VIEW: REPORT -->
+<section class="view" data-view="report" id="view-report">
+  <div class="rv">
+    <div class="rv-bar">
+      <div class="rv-title">
+        <button class="btn btn-quiet btn-sm" data-go="build" aria-label="Edit report"><span data-icon="back"></span>Edit</button>
+        <div>
+          <p class="rv-k mono" id="rvRef">RPT-000000</p>
+          <h1 id="rvTitle">Location Intelligence Report</h1>
+        </div>
+      </div>
+      <div class="rv-actions">
+        <div class="zoom" role="group" aria-label="Zoom">
+          <button id="zOut" aria-label="Zoom out" data-icon="minus"></button>
+          <span class="mono" id="zVal">40%</span>
+          <button id="zIn" aria-label="Zoom in" data-icon="plus"></button>
+        </div>
+        <span class="mono rv-page" id="rvPage">&ndash; / &ndash;</span>
+        <button class="btn btn-glass btn-sm" id="rvDownload"><span data-icon="download"></span>Download PDF</button>
+        <button class="btn btn-glass btn-sm" id="rvEditLoc"><span data-icon="pin"></span>Edit location</button>
+        <button class="btn btn-glass btn-sm" id="rvExplore"><span data-icon="layers"></span>Explore map</button>
+        <button class="btn btn-primary btn-sm" id="rvNew">New report</button>
+      </div>
+    </div>
+    <div class="rv-body">
+      <aside class="rv-side" id="rvSide">
+        <p class="rail-k">In this report</p>
+        <ol class="rv-toc" id="rvToc"></ol>
+      </aside>
+      <div class="rv-pages" id="rvPages">
+        <div class="rv-loading" id="rvLoading"><span class="spinner"></span>Assembling your PDF&hellip;</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Mobile sticky CTA -->
+<div class="sv-modal" id="svModal" hidden role="dialog" aria-modal="true" aria-labelledby="svTitle">
+  <div class="sv-card">
+    <div class="sv-head"><div><b id="svTitle">Street View</b><span class="mono muted" id="svCoords"></span></div><button type="button" class="sc-close" data-close aria-label="Close Street View"><span data-icon="close"></span></button></div>
+    <div class="sv-frame" id="svFrame"></div>
+    <p class="sv-note">Imagery &copy; Google. Coverage varies; where there&rsquo;s no imagery at this spot, the viewer shows the nearest available view or stays blank.</p>
+  </div>
+</div>
+<div class="mobile-cta" id="mobileCta"><button class="btn btn-primary btn-block" data-go="build">Generate report <span class="btn-arrow"></span></button></div>
+
+<div class="toast" id="toast" role="status" hidden></div>
+
+<!-- Validation dialog -->
+<div class="modal" id="valModal" hidden>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="valTitle">
+    <button type="button" class="modal-x" data-close aria-label="Close" data-icon="close"></button>
+    <h3 id="valTitle">Before generating your report</h3>
+    <p>Please complete:</p>
+    <ul class="val-list" id="valList"></ul>
+    <div class="val-actions" id="valActions"></div>
+  </div>
+</div>
+
+<!-- Libraries: Leaflet (map) from cdnjs; pdf.js + pdf-lib are vendored in assets/vendor and lazy-loaded on the report page -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script src="js/config.js"></script>
+<script src="js/data.js"></script>
+<script src="js/city.js"></script>
+<script src="js/geocode.js"></script>
+<script src="js/sitemap.js"></script>
+<script src="js/location.js"></script>
+<script src="js/home.js"></script>
+<script src="js/builder.js"></script>
+<script src="js/report.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
